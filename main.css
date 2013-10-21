@@ -46,3 +46,71 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+/* Here starts the custom CSS for this site */
+body {
+    width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    margin: 75px auto 0;
+}
+
+#add_item {
+    text-align: center;
+}
+
+input {
+    font-size: 20px;
+}
+
+input[type=text] {
+    width: 20em;
+}
+
+#shopping_list {
+    margin-top: 25px;
+}
+
+#shopping_list li {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    font-size: 20px;
+}
+
+#shopping_list li:hover {
+    background: #eee;
+    cursor: pointer;
+}
+
+#shopping_list input {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+#button_bar {
+    text-align: center;
+}
+
+#items_info {
+    text-align: right;
+}
+
+#selected_items_info {
+    display: none;
+}
