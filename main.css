@@ -90,17 +90,23 @@ input[type=text] {
 }
 
 #shopping_list {
-    margin-top: 25px;
+    margin: 25px auto;
+    border: 1px solid;
+    border-radius: 10px;
+    box-shadow: 5px 5px #ccc;
 }
 
 #shopping_list li {
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid;
+    margin: 5px auto;
     font-size: 20px;
 
     /* Elements are hidden by default and displayed through js animation */
     display: none;
+}
+
+#shopping_list li:nth-child(even) {
+    background: yellow;
 }
 
 #shopping_list li:hover {
