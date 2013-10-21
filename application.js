@@ -19,14 +19,15 @@ $(document).ready(function() {
 
 function handleAddItem() {
     var item = $("#item");
+    var value = item.val().trim();
     var shoppping_list = $("#shopping_list");
 
-    console.log("Adding " + item.val() + "...");
+    console.log("Adding " + value + "...");
     var new_item = $(
         "<li>" +
-        "<input type=\"checkbox\" value=\"" + item.val() + "\">" +
-        "<input type=\"text\" value=\"" + item.val() + "\">" +
-        "<span>" + item.val() + "</span>" +
+        "<input type=\"checkbox\" value=\"" + value + "\">" +
+        "<input type=\"text\" value=\"" + value + "\">" +
+        "<span>" + value + "</span>" +
         "</li>");
     new_item.appendTo("#shopping_list");
     new_item.slideDown();

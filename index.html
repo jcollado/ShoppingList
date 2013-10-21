@@ -13,8 +13,8 @@
 
         <main>
             <form id="add_item">
-                <input type="text" name="item" id="item"
-                       placeholder="Something you need to buy" required autofocus>
+                <input type="text" name="item" id="item" pattern="\s*?\w+.*"
+                    placeholder="Something you need to buy" required autofocus>
                 <input type="submit" value="Add">
             </form>
 
