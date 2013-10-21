@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $("form").submit(handleSubmit);
-    $("#shopping_list").on("click", "input", handleItemClick);
+    $("#shopping_list").on("click", "input", handleInputClick);
+    $("#shopping_list").on("click", "li", handleItemClick);
     $("#toggle_all_btn").click(handleToggleAllClick);
     $("#complete_btn").click(handleCompleteClick);
 });
@@ -69,12 +70,21 @@ function updateToggleAllButton() {
     }
 }
 
-function handleItemClick() {
+function handleInputClick(event) {
     var input = $(this);
     console.log("Toggled " + input.val());
 
     updateSelectedItemCount();
     updateToggleAllButton();
+}
+
+function handleItemClick(event) {
+    // Avoid handling input click events twice
+    if (!$(event.target).is("li")) {
+            return;
+    }
+
+    $(this).find("input").click();
 }
 
 function handleToggleAllClick() {

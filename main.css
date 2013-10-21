@@ -88,11 +88,17 @@ input {
 input[type=text] {
     width: 30em;
     margin-right: 20px;
+    border: 1px solid;
     box-shadow: 5px 5px #ccc;
 }
 
 input[type=submit], input[type=button] {
     box-shadow: 5px 5px #ccc;
+    border-radius: 5px;
+}
+
+input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
+    cursor: pointer
 }
 
 #shopping_list_container {
