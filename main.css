@@ -110,6 +110,7 @@ input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
 
 #shopping_list {
     padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid;
     border-radius: 10px;
     box-shadow: 5px 5px #ccc;
@@ -148,6 +149,18 @@ input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
     display: none;
 }
 
+#items_info {
+    float: left;
+    text-align: left;
+}
+
+#selected_items_info {
+    display: none;
+}
+#help_text {
+    text-align: right;
+}
+
 #button_bar {
     margin-top: 50px;
     padding: 5px 10px;
@@ -158,10 +171,3 @@ input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
     margin-right: 20px;
 }
 
-#items_info {
-    text-align: right;
-}
-
-#selected_items_info {
-    display: none;
-}

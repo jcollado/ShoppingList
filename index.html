@@ -20,18 +20,25 @@
 
             <form id="edit_item">
                 <ul id="shopping_list"></ul>
+
+                <p id="items_info">
+                    <span id="item_count">0</span> items
+                    <span id="selected_items_info">(<span id="selected_items_count">0</span>
+                        selected)
+                    </span>
+                </p>
+
+                <div id="help_text">
+                    <p>Click: select item</p>
+                    <p>Double click: edit item</p>
+                </div>
+
                 <div id="button_bar">
                     <input id="toggle_all_btn" type="button" value="Select all" disabled>
                     <input id="complete_btn" type="button" value="Mark as complete" disabled>
                 </div>
             </form>
 
-            <p id="items_info">
-                <span id="item_count">0</span> items
-                <span id="selected_items_info">(<span id="selected_items_count">0</span>
-                    selected)
-                </span>
-            </p>
         </main>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
