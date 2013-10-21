@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $("form").submit(handleSubmit);
     $("#shopping_list").on("click", "input", handleItemClick);
-    $("#toggle_all").click(handleToggleAllClick);
-    $("#complete").click(handleCompleteClick);
+    $("#toggle_all_btn").click(handleToggleAllClick);
+    $("#complete_btn").click(handleCompleteClick);
 });
 
 function handleSubmit() {
@@ -22,6 +22,7 @@ function handleSubmit() {
     item.val("");
 
     updateItemCount();
+    updateToggleAllButton();
 
     // Never send form to the server
     return false;
@@ -31,6 +32,13 @@ function updateItemCount() {
     var item_count = $("#shopping_list li").length;
     console.log("Items: " + item_count);
     $("#item_count").text(item_count);
+
+    var shopping_list = $("#shopping_list");
+    if (item_count > 0) {
+        shopping_list.show();
+    } else {
+        shopping_list.hide();
+    }
 }
 
 function updateSelectedItemCount() {
@@ -43,13 +51,18 @@ function updateSelectedItemCount() {
     } else {
         selected_items.hide();
     }
+
+    $("#complete_btn").prop("disabled", selected_count === 0);
 }
 
 function updateToggleAllButton() {
-    var toggle_all = $("#toggle_all");
+    var toggle_all = $("#toggle_all_btn");
     var item_count = $("#shopping_list input").length;
     var selected_count = $("#shopping_list input:checked").length;
-    if (item_count == selected_count) {
+
+    toggle_all.prop("disabled", item_count === 0);
+
+    if (item_count > 0 && item_count == selected_count) {
         toggle_all.val("Deselect all");
     } else {
         toggle_all.val("Select all");
@@ -72,8 +85,6 @@ function handleToggleAllClick() {
         inputs = inputs.filter(":checked");
     }
     inputs.click();
-
-    return false;
 }
 
 function handleCompleteClick() {
@@ -83,7 +94,6 @@ function handleCompleteClick() {
         $(this).remove();
         updateItemCount();
         updateSelectedItemCount();
+        updateToggleAllButton();
     });
-
-    return false;
 }

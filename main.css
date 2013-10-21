@@ -89,11 +89,15 @@ input[type=text] {
     margin-right: 20px;
 }
 
-#shopping_list {
+#shopping_list_container {
     margin: 25px auto;
+}
+
+#shopping_list {
     border: 1px solid;
     border-radius: 10px;
     box-shadow: 5px 5px #ccc;
+    display: none;
 }
 
 #shopping_list li {
@@ -122,6 +126,10 @@ input[type=text] {
 #button_bar {
     padding: 5px 10px;
     text-align: center;
+}
+
+#button_bar input:first-child {
+    margin-right: 20px;
 }
 
 #items_info {
