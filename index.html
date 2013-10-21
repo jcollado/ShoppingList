@@ -12,29 +12,26 @@
         </header>
 
         <main>
-            <form>
-                <div id="add_item">
-                    <input type="text" name="item" id="item"
-                           placeholder="Something you need to buy" required autofocus>
-                    <input type="submit" value="Add">
-                </div>
+            <form id="add_item">
+                <input type="text" name="item" id="item"
+                       placeholder="Something you need to buy" required autofocus>
+                <input type="submit" value="Add">
+            </form>
 
-                <div id="shopping_list_container">
-                    <ul id="shopping_list">
-                    </ul>
-                </div>
-
+            <form id="edit_item">
+                <ul id="shopping_list"></ul>
                 <div id="button_bar">
                     <input id="toggle_all_btn" type="button" value="Select all" disabled>
                     <input id="complete_btn" type="button" value="Mark as complete" disabled>
                 </div>
-                <p id="items_info">
-                    <span id="item_count">0</span> items
-                    <span id="selected_items_info">(<span id="selected_items_count">0</span>
-                        selected)
-                    </span>
-                </p>
             </form>
+
+            <p id="items_info">
+                <span id="item_count">0</span> items
+                <span id="selected_items_info">(<span id="selected_items_count">0</span>
+                    selected)
+                </span>
+            </p>
         </main>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

@@ -56,6 +56,7 @@ body {
 main {
     width: 900px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 h1 {
@@ -72,20 +73,18 @@ h1, h2 {
     text-align: center;
 }
 
-form {
-    margin: 75px auto 0;
-}
-
 #add_item {
+    margin-top: 50px;
     text-align: center;
+
 }
 
-input {
+#add_item input, #button_bar input {
     font-size: 20px;
     padding: 5px 10px;
 }
 
-input[type=text] {
+#add_item input[type=text] {
     width: 30em;
     margin-right: 20px;
     border: 1px solid;
@@ -101,8 +100,12 @@ input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
     cursor: pointer
 }
 
-#shopping_list_container {
-    margin: 25px auto;
+#edit_item {
+    margin-top: 50px;
+}
+
+#edit_item input[type=text] {
+    width: 820px;
 }
 
 #shopping_list {
@@ -133,12 +136,20 @@ input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
     cursor: pointer;
 }
 
-#shopping_list input {
+#shopping_list input[type=checkbox] {
     margin-right: 15px;
     cursor: pointer;
 }
 
+#shopping_list input[type=text] {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    display: none;
+}
+
 #button_bar {
+    margin-top: 50px;
     padding: 5px 10px;
     text-align: center;
 }

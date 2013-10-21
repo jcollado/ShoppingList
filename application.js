@@ -1,12 +1,23 @@
 $(document).ready(function() {
-    $("form").submit(handleSubmit);
-    $("#shopping_list").on("click", "input", handleInputClick);
+    $("#add_item").submit(handleAddItem);
+    $("#edit_item").submit(function() {
+        return false;
+    });
+    $("#shopping_list").on("click", "input[type=checkbox]", handleCheckboxClick);
     $("#shopping_list").on("click", "li", handleItemClick);
+    $("#shopping_list").on("dblclick", "li", handleItemDblClick);
+    $("#shopping_list").on("focusout", "input[type=text]", handleEditItem);
+    $("#shopping_list").on("keypress", "input[type=text]", function(event) {
+        // Save changes when enter key is pressed
+        if (event.keyCode == 13) {
+            handleEditItem.call(this);
+        }
+    });
     $("#toggle_all_btn").click(handleToggleAllClick);
     $("#complete_btn").click(handleCompleteClick);
 });
 
-function handleSubmit() {
+function handleAddItem() {
     var item = $("#item");
     var shoppping_list = $("#shopping_list");
 
@@ -14,7 +25,8 @@ function handleSubmit() {
     var new_item = $(
         "<li>" +
         "<input type=\"checkbox\" value=\"" + item.val() + "\">" +
-        item.val() +
+        "<input type=\"text\" value=\"" + item.val() + "\">" +
+        "<span>" + item.val() + "</span>" +
         "</li>");
     new_item.appendTo("#shopping_list");
     new_item.slideDown();
@@ -44,7 +56,7 @@ function updateItemCount() {
 
 function updateSelectedItemCount() {
     var selected_items = $("#selected_items_info");
-    var selected_count = $("#shopping_list input:checked").length;
+    var selected_count = $("#shopping_list input[type=checkbox]:checked").length;
     console.log("Selected items: " + selected_count);
     $("#selected_items_count").text(selected_count);
     if (selected_count > 0) {
@@ -58,8 +70,8 @@ function updateSelectedItemCount() {
 
 function updateToggleAllButton() {
     var toggle_all = $("#toggle_all_btn");
-    var item_count = $("#shopping_list input").length;
-    var selected_count = $("#shopping_list input:checked").length;
+    var item_count = $("#shopping_list input[type=checkbox]").length;
+    var selected_count = $("#shopping_list input[type=checkbox]:checked").length;
 
     toggle_all.prop("disabled", item_count === 0);
 
@@ -70,7 +82,7 @@ function updateToggleAllButton() {
     }
 }
 
-function handleInputClick(event) {
+function handleCheckboxClick(event) {
     var input = $(this);
     console.log("Toggled " + input.val());
 
@@ -79,12 +91,20 @@ function handleInputClick(event) {
 }
 
 function handleItemClick(event) {
-    // Avoid handling input click events twice
+    // Avoid handling input click events twice when they bubble up
     if (!$(event.target).is("li")) {
             return;
     }
 
-    $(this).find("input").click();
+    $(this).find("input[type=checkbox]").click();
+}
+
+function handleItemDblClick(event) {
+    var input = $(this).find("input[type=text]");
+    var span = $(this).find("span");
+
+    span.hide();
+    input.show().focus();
 }
 
 function handleToggleAllClick() {
@@ -99,11 +119,20 @@ function handleToggleAllClick() {
 
 function handleCompleteClick() {
     var items = $("#shopping_list input:checked").parent();
-    console.log(items);
     items.slideUp(function() {
         $(this).remove();
         updateItemCount();
         updateSelectedItemCount();
         updateToggleAllButton();
     });
+}
+
+function handleEditItem() {
+    var input = $(this);
+    var span = input.siblings("span");
+
+    input.hide();
+    span.text(input.val());
+    console.log("New item value: " + input.val());
+    span.show();
 }
