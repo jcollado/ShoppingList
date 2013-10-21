@@ -98,6 +98,9 @@ input[type=text] {
     margin-bottom: 10px;
     border: 1px solid;
     font-size: 20px;
+
+    /* Elements are hidden by default and displayed through js animation */
+    display: none;
 }
 
 #shopping_list li:hover {

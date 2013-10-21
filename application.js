@@ -10,11 +10,13 @@ function handleSubmit() {
     var shoppping_list = $("#shopping_list");
 
     console.log("Adding " + item.val() + "...");
-    $("#shopping_list").append(
-            "<li>" +
-            "<input type=\"checkbox\" value=\"" + item.val() + "\">" +
-            item.val() +
-            "</li>");
+    var new_item = $(
+        "<li>" +
+        "<input type=\"checkbox\" value=\"" + item.val() + "\">" +
+        item.val() +
+        "</li>");
+    new_item.appendTo("#shopping_list");
+    new_item.slideDown();
 
     // Clear item so that next value is written easily
     item.val("");
@@ -31,11 +33,7 @@ function updateItemCount() {
     $("#item_count").text(item_count);
 }
 
-function handleItemClick() {
-    var input = $(this);
-    console.log("Toggled " + input.val());
-
-    // Display number of selected items
+function updateSelectedItemCount() {
     var selected_items = $("#selected_items_info");
     var selected_count = $("#shopping_list input:checked").length;
     console.log("Selected items: " + selected_count);
@@ -45,53 +43,46 @@ function handleItemClick() {
     } else {
         selected_items.hide();
     }
+}
 
-    // Update select/deselect all button
+function updateToggleAllButton() {
     var toggle_all = $("#toggle_all");
     var item_count = $("#shopping_list input").length;
+    var selected_count = $("#shopping_list input:checked").length;
     if (item_count == selected_count) {
         toggle_all.val("Deselect all");
     } else {
         toggle_all.val("Select all");
     }
+}
 
+function handleItemClick() {
+    var input = $(this);
+    console.log("Toggled " + input.val());
+
+    updateSelectedItemCount();
+    updateToggleAllButton();
 }
 
 function handleToggleAllClick() {
     var inputs = $("#shopping_list input");
-
-    // Click on *not* selected items
-    function select(index, element) {
-        var e = $(element);
-        if (!e.is(":checked")) {
-            e.click();
-        }
-    }
-
-    // Click on selected items
-    function deselect(index, element) {
-        var e = $(element);
-        if (e.is(":checked")) {
-            e.click();
-        }
-    }
-
     if ($(this).val() == "Select all") {
-        inputs.each(select);
+        inputs = inputs.filter(":not(:checked)");
     } else {
-        inputs.each(deselect);
+        inputs = inputs.filter(":checked");
     }
+    inputs.click();
 
     return false;
 }
 
 function handleCompleteClick() {
-    var inputs = $("#shopping_list input:checked");
-
-    // Remove selected items
-    inputs.each(function(index, element) {
-        var e = $(element);
-        e.parent().remove();
+    var items = $("#shopping_list input:checked").parent();
+    console.log(items);
+    items.slideUp(function() {
+        $(this).remove();
+        updateItemCount();
+        updateSelectedItemCount();
     });
 
     return false;
