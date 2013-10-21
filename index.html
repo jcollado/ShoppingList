@@ -6,29 +6,34 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <h1>Shopping list</h1>
-        <h2>Write a list of the items you need to buy</h2>
-        <form>
-            <div id="add_item">
-                <input type="text" name="item" id="item"
-                       placeholder="Something you need to buy" required autofocus>
-                <input type="submit" value="Add">
-            </div>
+        <header>
+            <h1>Shopping list</h1>
+            <h2>Write a list of the items you need to buy</h2>
+        </header>
 
-            <ul id="shopping_list">
-            </ul>
+        <main>
+            <form>
+                <div id="add_item">
+                    <input type="text" name="item" id="item"
+                           placeholder="Something you need to buy" required autofocus>
+                    <input type="submit" value="Add">
+                </div>
 
-            <div id="button_bar">
-                <input id="toggle_all" type="submit" value="Select all">
-                <input id="complete" type="submit" value="Complete">
-            </div>
-            <p id="items_info">
-                <span id="item_count">0</span> items
-                <span id="selected_items_info">(<span id="selected_items_count">0</span>
-                    selected)
-                </span>
-            </p>
-        </form>
+                <ul id="shopping_list">
+                </ul>
+
+                <div id="button_bar">
+                    <input id="toggle_all" type="submit" value="Select all">
+                    <input id="complete" type="submit" value="Complete">
+                </div>
+                <p id="items_info">
+                    <span id="item_count">0</span> items
+                    <span id="selected_items_info">(<span id="selected_items_count">0</span>
+                        selected)
+                    </span>
+                </p>
+            </form>
+        </main>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="application.js"></script>

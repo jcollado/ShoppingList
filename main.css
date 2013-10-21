@@ -49,6 +49,10 @@ table {
 
 /* Here starts the custom CSS for this site */
 body {
+    min-width: 980px;
+}
+
+main {
     width: 900px;
     margin: 0 auto;
 }
@@ -79,7 +83,7 @@ input {
 }
 
 input[type=text] {
-    width: 20em;
+    width: 30em;
 }
 
 #shopping_list {
