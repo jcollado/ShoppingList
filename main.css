@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    background: url("background.png");
 }
 ol, ul {
     list-style: none;
@@ -87,6 +88,11 @@ input {
 input[type=text] {
     width: 30em;
     margin-right: 20px;
+    box-shadow: 5px 5px #ccc;
+}
+
+input[type=submit], input[type=button] {
+    box-shadow: 5px 5px #ccc;
 }
 
 #shopping_list_container {
@@ -94,6 +100,7 @@ input[type=text] {
 }
 
 #shopping_list {
+    padding: 10px;
     border: 1px solid;
     border-radius: 10px;
     box-shadow: 5px 5px #ccc;
@@ -109,12 +116,14 @@ input[type=text] {
     display: none;
 }
 
-#shopping_list li:nth-child(even) {
-    background: yellow;
+#shopping_list li:nth-child(odd) {
+    background: rgb(173, 216, 227);
+    background: rgba(173, 216, 227, 0.5);
 }
 
 #shopping_list li:hover {
-    background: #eee;
+    background: rgb(208, 208, 208);
+    background: rgba(208, 208, 208, 0.5);
     cursor: pointer;
 }
 
