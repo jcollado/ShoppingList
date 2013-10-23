@@ -76,7 +76,6 @@ h1, h2 {
 #add_item {
     margin-top: 50px;
     text-align: center;
-
 }
 
 #add_item input, #button_bar input {
@@ -89,6 +88,12 @@ h1, h2 {
     margin-right: 20px;
     border: 1px solid;
     box-shadow: 5px 5px #ccc;
+}
+
+#add_item p {
+    margin-top: 10px;
+    color: red;
+    display: none;
 }
 
 input[type=submit], input[type=button] {

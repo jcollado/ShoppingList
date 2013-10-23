@@ -16,6 +16,7 @@
                 <input type="text" name="item" id="item" pattern="\s*?\w+.*"
                     placeholder="Something you need to buy" required autofocus>
                 <input type="submit" value="Add">
+                <p id="error">Error: <span></span>
             </form>
 
             <form id="edit_item">
@@ -38,7 +39,6 @@
                     <input id="complete_btn" type="button" value="Mark as complete" disabled>
                 </div>
             </form>
-
         </main>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

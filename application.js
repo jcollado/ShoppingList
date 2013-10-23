@@ -46,6 +46,14 @@ $(document).ready(function() {
 function handleAddItem() {
     var item = $("#item");
     var value = item.val().trim();
+    var error = $("#error").hide();
+
+    if (value === "") {
+        console.log('hola');
+        error.find("span").text("Please enter a non-empty value");
+        error.show();
+        return false;
+    }
 
     console.log("Adding " + value + "...");
     var new_item = $(
