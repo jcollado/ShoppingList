@@ -1,26 +1,42 @@
 $(document).ready(function() {
     $("#add_item").submit(handleAddItem);
+
     $("#edit_item").submit(function() {
+        // Edit form is used to edit shopping list values,
+        // but the form itself should never be submitted
         return false;
     });
-    $("#shopping_list").on("click", "input[type=checkbox]", handleCheckboxClick);
-    $("#shopping_list").on("click", "li", handleItemClick);
-    $("#shopping_list").on("dblclick", "li", handleItemDblClick);
-    $("#shopping_list").on("focusout", "input[type=text]", handleEditItem);
-    $("#shopping_list").on("keypress", "input[type=text]", function(event) {
+
+    var shopping_list = $("#shopping_list");
+
+    // Checkbox is toggled both when the checkbox itself is clicked
+    // and also when the parent <li> element is clicked
+    shopping_list.on("click", "input[type=checkbox]", handleCheckboxClick);
+    shopping_list.on("click", "li", handleItemClick);
+
+    // When the <li> element is double clicked, the input text box
+    // is displayed to let the user edit the item
+    shopping_list.on("dblclick", "li", handleEditItemStart);
+
+    // When the input text box is focused out or when the enter key is pressed
+    // the edition is finished and the span element is displayed again
+    shopping_list.on("focusout", "input[type=text]", handleEditItemStop);
+    shopping_list.on("keypress", "input[type=text]", function(event) {
         // Save changes when enter key is pressed
         if (event.keyCode == 13) {
-            handleEditItem.call(this);
+            handleEditItemStop.call(this);
         }
     });
     $("#toggle_all_btn").click(handleToggleAllClick);
     $("#complete_btn").click(handleCompleteClick);
 });
 
+// Add item to shopping list
+// A span and an input text box is used to make sure the item
+// can be edited in the future
 function handleAddItem() {
     var item = $("#item");
     var value = item.val().trim();
-    var shoppping_list = $("#shopping_list");
 
     console.log("Adding " + value + "...");
     var new_item = $(
@@ -42,6 +58,10 @@ function handleAddItem() {
     return false;
 }
 
+// Update item count
+// This is called as a side effect after:
+// - an item is added
+// - some items have been marked as complete
 function updateItemCount() {
     var item_count = $("#shopping_list li").length;
     console.log("Items: " + item_count);
@@ -55,6 +75,10 @@ function updateItemCount() {
     }
 }
 
+// Update selected item count
+// This is called as a side effect after:
+// - an item is selected
+// - some items have been marked as complete
 function updateSelectedItemCount() {
     var selected_items = $("#selected_items_info");
     var selected_count = $("#shopping_list input[type=checkbox]:checked").length;
@@ -69,6 +93,8 @@ function updateSelectedItemCount() {
     $("#complete_btn").prop("disabled", selected_count === 0);
 }
 
+// Update toggle all button text (select/deselect all)
+// depending on the number of items selected
 function updateToggleAllButton() {
     var toggle_all = $("#toggle_all_btn");
     var item_count = $("#shopping_list input[type=checkbox]").length;
@@ -83,6 +109,7 @@ function updateToggleAllButton() {
     }
 }
 
+// Make sure application state is update when an item is selected
 function handleCheckboxClick(event) {
     var input = $(this);
     console.log("Toggled " + input.val());
@@ -91,6 +118,7 @@ function handleCheckboxClick(event) {
     updateToggleAllButton();
 }
 
+// When <li> element is clicked, behave as if <input type="checkbox"> is clicked
 function handleItemClick(event) {
     // Avoid handling input click events twice when they bubble up
     if (!$(event.target).is("li")) {
@@ -100,14 +128,7 @@ function handleItemClick(event) {
     $(this).find("input[type=checkbox]").click();
 }
 
-function handleItemDblClick(event) {
-    var input = $(this).find("input[type=text]");
-    var span = $(this).find("span");
-
-    span.hide();
-    input.show().focus();
-}
-
+// Select/Deselect all when button is clicked
 function handleToggleAllClick() {
     var inputs = $("#shopping_list input");
     if ($(this).val() == "Select all") {
@@ -118,6 +139,7 @@ function handleToggleAllClick() {
     inputs.click();
 }
 
+// Remove selected items when complete button is clicked
 function handleCompleteClick() {
     var items = $("#shopping_list input:checked").parent();
     items.slideUp(function() {
@@ -128,7 +150,17 @@ function handleCompleteClick() {
     });
 }
 
-function handleEditItem() {
+// Start item edition by hiding span and showing input text box
+function handleEditItemStart(event) {
+    var input = $(this).find("input[type=text]");
+    var span = $(this).find("span");
+
+    span.hide();
+    input.show().focus();
+}
+
+// End item edition by hiding text box and showing span with updated value
+function handleEditItemStop() {
     var input = $(this);
     var span = input.siblings("span");
 
