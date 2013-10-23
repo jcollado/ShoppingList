@@ -23,8 +23,8 @@ $(document).ready(function() {
     shopping_list.on("focusout", "input[type=text]", handleEditItemStop);
     shopping_list.on("keypress", "input[type=text]", function(event) {
         // Save changes when enter key is pressed
-        if (event.keyCode == 13) {
-            handleEditItemStop.call(this);
+        if (event.which == 13) {
+            $(this).focusout();
         }
     });
     $("#toggle_all_btn").click(handleToggleAllClick);
