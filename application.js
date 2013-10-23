@@ -116,15 +116,13 @@ function handleCheckboxClick(event) {
 
     updateSelectedItemCount();
     updateToggleAllButton();
+
+    // Don't bubble up the event to the enclosing <li> element
+    event.stopPropagation();
 }
 
 // When <li> element is clicked, behave as if <input type="checkbox"> is clicked
 function handleItemClick(event) {
-    // Avoid handling input click events twice when they bubble up
-    if (!$(event.target).is("li")) {
-            return;
-    }
-
     $(this).find("input[type=checkbox]").click();
 }
 
