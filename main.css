@@ -105,7 +105,7 @@ input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
 }
 
 #edit_item input[type=text] {
-    width: 820px;
+    width: 780px;
 }
 
 #shopping_list {
@@ -118,6 +118,7 @@ input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
 }
 
 #shopping_list li {
+    position: relative;
     padding: 10px;
     margin: 5px auto;
     font-size: 20px;
@@ -146,6 +147,11 @@ input[type=submit]:enabled:hover, input[type=button]:enabled:hover {
     font-size: 20px;
     border: none;
     outline: none;
+    display: none;
+}
+
+#shopping_list a {
+    float: right;
     display: none;
 }
 

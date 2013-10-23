@@ -13,6 +13,15 @@ $(document).ready(function() {
     // and also when the parent <li> element is clicked
     shopping_list.on("click", "input[type=checkbox]", handleCheckboxClick);
     shopping_list.on("click", "li", handleItemClick);
+    shopping_list.on("mouseenter mouseleave", "li", function() {
+        $(this).find("a").toggle();
+    });
+    shopping_list.on("click", "a", function(event) {
+        handleEditItemStart.call($(this).parent());
+
+        // Don't bubble up the event to the enclosing <li> element
+        event.stopPropagation();
+    });
 
     // When the <li> element is double clicked, the input text box
     // is displayed to let the user edit the item
@@ -44,6 +53,7 @@ function handleAddItem() {
         "<input type=\"checkbox\" value=\"" + value + "\">" +
         "<input type=\"text\" value=\"" + value + "\">" +
         "<span>" + value + "</span>" +
+        "<a href=\"#\">Edit</a> " +
         "</li>");
     new_item.appendTo("#shopping_list");
     new_item.slideDown();
