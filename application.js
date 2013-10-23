@@ -128,7 +128,7 @@ function handleItemClick(event) {
 
 // Select/Deselect all when button is clicked
 function handleToggleAllClick() {
-    var inputs = $("#shopping_list input");
+    var inputs = $("#shopping_list input[type=checkbox]");
     if ($(this).val() == "Select all") {
         inputs = inputs.filter(":not(:checked)");
     } else {
