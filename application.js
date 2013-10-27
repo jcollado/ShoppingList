@@ -8,6 +8,7 @@ $(document).ready(function() {
     });
 
     var shopping_list = $("#shopping_list");
+    shopping_list.sortable();
 
     // Checkbox is toggled both when the checkbox itself is clicked
     // and also when the parent <li> element is clicked
@@ -22,6 +23,7 @@ $(document).ready(function() {
         // Don't bubble up the event to the enclosing <li> element
         event.stopPropagation();
     });
+
 
     // When the <li> element is double clicked, the input text box
     // is displayed to let the user edit the item
